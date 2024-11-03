@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif; /* Or your preferred font */
+}
+
+/* Optional: additional global styles */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #36393f; /* Ensure this matches your app's theme */
+}
