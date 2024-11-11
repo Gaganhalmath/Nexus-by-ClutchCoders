@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LogIn, Lock, Mail, MessageSquare } from 'lucide-react';
 
-interface LoginPageProps {
-  onLogin: (email: string, password: string) => void;
-  onRegister: () => void;
-  onForgotPassword: () => void;
-}
-
-const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onRegister, onForgotPassword }) => {
+const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(email, password);
+    navigate('/otp', { state: { email, password } });
   };
 
   return (
@@ -69,10 +65,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onRegister, onForgotPass
           <div>
             <button
               type="button"
-              onClick={onForgotPassword}
+              onClick={() => navigate('/')}
               className="text-sm text-[#5865f2] hover:underline"
             >
-              Forgot your password?
+              Back
             </button>
           </div>
 
@@ -88,7 +84,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onRegister, onForgotPass
             Need an account?{' '}
             <button
               type="button"
-              onClick={onRegister}
+              onClick={() => navigate('/register')}
               className="text-[#5865f2] hover:underline"
             >
               Register
