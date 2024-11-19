@@ -7,9 +7,11 @@ const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/otp', { state: { email, password } });
+    // Redirect to the Profile Creation page with necessary state
+    navigate('/profile-creation', { state: { name, email, password } });
   };
 
   return (
@@ -58,7 +60,7 @@ const RegisterPage: React.FC = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex justify-between items-center">
             <button
               type="button"
               onClick={() => navigate('/')}

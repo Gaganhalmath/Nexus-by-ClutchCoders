@@ -2,22 +2,24 @@ import React from 'react';
 
 const AboutUs: React.FC = () => {
   return (
-    
-    <div className="bg-f9f9f9 text-gray-800 font-roboto">
+    <div className="bg-[#36393f] text-gray-200 font-roboto">
+      {/* Header */}
       <div className="header bg-black text-white p-4 flex justify-between items-center">
-        <img src="/Logo.png" alt="Logo" className="h-10" />
+        <img src="/Nexus-logo.jpg" alt="Logo" className="h-10" />
         <div className="menu flex gap-4">
-          <a href="index4.html" className="font-medium">Home</a>
-          <a href="#" className="font-medium">Discussion</a>
-          <a href="#" className="font-medium">Mentoring</a>
-          <a href="donation1.html" className="font-medium">Go Back</a>
+          <a href="/HomePage" className="font-medium">Home</a>
+          <a href="/DashBoard" className="font-medium">Discussion</a>
+          <a href="/mentorship" className="font-medium">Mentoring</a>
+          <a href="/HomePage" className="font-medium">Go Back</a>
         </div>
       </div>
 
+      {/* Banner */}
       <div className="about-banner bg-violet-600 text-white text-center p-8">
         <h1 className="text-4xl">About Us</h1>
       </div>
 
+      {/* Content */}
       <div className="content p-8 max-w-3xl mx-auto">
         <h2 className="text-3xl mb-4">Our Mission</h2>
         <p className="text-base leading-relaxed mb-8">
@@ -47,24 +49,25 @@ const AboutUs: React.FC = () => {
 
         <h2 className="text-3xl mb-4">Meet the Team</h2>
         <div className="team grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          <div className="team-member text-center p-4 bg-white rounded-lg shadow-md">
+          <div className="team-member text-center p-4 bg-gray-700 text-gray-200 rounded-lg shadow-md">
             <img src="Anant.jpeg" alt="Team Member 1" className="w-24 h-24 rounded-full mx-auto mb-4" />
             <h3 className="text-xl mb-2">Anant Inamdar</h3>
-            <p className="text-sm text-gray-600">Founder & Host</p>
+            <p className="text-sm text-gray-400">Founder & Host</p>
           </div>
-          <div className="team-member text-center p-4 bg-white rounded-lg shadow-md">
+          <div className="team-member text-center p-4 bg-gray-700 text-gray-200 rounded-lg shadow-md">
             <img src="Gagan.jpeg" alt="Team Member 2" className="w-24 h-24 rounded-full mx-auto mb-4" />
-            <h3 className="text-xl mb-2">Gagandeep H</h3>
-            <p className="text-sm text-gray-600">Content Creator</p>
+            <h3 className="text-xl mb-2">Gagan H</h3>
+            <p className="text-sm text-gray-400">Content Creator</p>
           </div>
-          <div className="team-member text-center p-4 bg-white rounded-lg shadow-md">
+          <div className="team-member text-center p-4 bg-gray-700 text-gray-200 rounded-lg shadow-md">
             <img src="Faizal.jpeg" alt="Team Member 3" className="w-24 h-24 rounded-full mx-auto mb-4" />
-            <h3 className="text-xl mb-2">Faizal Kittur</h3>
-            <p className="text-sm text-gray-600">Community Manager</p>
+            <h3 className="text-xl mb-2">Faisal Kittur</h3>
+            <p className="text-sm text-gray-400">Community Manager</p>
           </div>
         </div>
       </div>
 
+      {/* Footer */}
       <div className="footer bg-black text-white text-center p-4">
         <p>© 2023 The Podcast Community for Freelancers. All rights reserved.</p>
         <div className="social-icons my-4 flex justify-center space-x-4">

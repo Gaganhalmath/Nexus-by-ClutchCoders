@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <style>{`
@@ -13,7 +15,7 @@ const HomePage: React.FC = () => {
           color: #333;
         }
         .header {
-          background-color: #36393f;
+          background-color: #0000;
           color: #fff;
           padding: 24px 50px;
           display: flex;
@@ -192,18 +194,19 @@ const HomePage: React.FC = () => {
       `}</style>
       <div>
       <div className="header">
-        <img alt="Logo" src="/Logo.png" />
+        <img alt="Logo" src="/Nexus-logo.jpg" />
         <div className="menu">
-          <Link to="/">Home</Link>
+          <Link to="/HomePage">Home</Link>
           <Link to="/dashboard">Discussion</Link> {/* Matches your route for Dashboard */}
-          <Link to="#">Mentoring</Link>
+          <Link to="/mentorship">Mentoring</Link>
           <Link to="/about">About Us</Link> {/* Matches your route for AboutUs */}
         </div>
       </div>
       <div className="main-banner">
         <h1>Welcome to Nexus – Where Freelancers Connect and Grow!</h1>
         <p>Join a vibrant community of freelancers ready to collaborate, share insights, and support each other’s journey.<br></br> Dive in, make connections, and unlock new possibilities with Nexus!</p>
-        <a className="cta-button" href="#">Go to Discussions</a>
+        <a className="cta-button" href="/Dashboard">Go to Discussions</a>
+        
       </div>
       <div className="content">
         {/* Section 1 - it is about finding friends/peers among users- must be directed to "find Friends" section*/}
@@ -219,6 +222,7 @@ const HomePage: React.FC = () => {
   type="button"
   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-md transition transform duration-300 ease-in-out hover:scale-105 hover:from-purple-800 hover:to-purple-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
 >
+  
   Networking made easy — Nexus brings talent together
 </button>
 
@@ -236,6 +240,7 @@ const HomePage: React.FC = () => {
               </div>
                 <button
   type="button"
+  onClick={() => navigate('/mentorship')}
   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-md transition transform duration-300 ease-in-out hover:scale-105 hover:from-purple-800 hover:to-purple-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
 >Level up your skills with expert knowledge</button>
             </div>
@@ -252,6 +257,7 @@ const HomePage: React.FC = () => {
       </div>
       <button
   type="button"
+  onClick={() => navigate('/dashboard')}
   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-md transition transform duration-300 ease-in-out hover:scale-105 hover:from-purple-800 hover:to-purple-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
 >Join the success — be part of the community where dreams are built.</button>
     </div>
@@ -268,6 +274,7 @@ const HomePage: React.FC = () => {
       </div>
       <button
   type="button"
+  onClick={() => navigate('/about')}
   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-md transition transform duration-300 ease-in-out hover:scale-105 hover:from-purple-800 hover:to-purple-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
 >Experience a platform made for your career.</button>
     </div>
@@ -289,7 +296,7 @@ const HomePage: React.FC = () => {
     <p>Address: 123 Adressing testing....address testing..</p>
   </div>
   <div className="footer-content">
-    <img alt="Podcast App" src="\Logo.png" height="100" width="60" />
+    <img alt="Podcast App" src="\Nexus-logo.jpg" height="100" width="60" />
     <p>Empowering Freelancers, Connecting Possibilities – Join Nexus Today.</p>
   </div>
 </div>
