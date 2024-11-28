@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ServerSidebar from 'D:/Nexus-2.0/src/components/dashboard/ServerSidebar.tsx';
-import ChannelSidebar from 'D:/Nexus-2.0/src/components/dashboard/ChannelSidebar';
-import ChatArea from 'D:/Nexus-2.0/src/components/dashboard/ChatArea.tsx';
+import ServerSidebar from './dashboard/ServerSidebar';
+import ChannelSidebar from './dashboard/ChannelSidebar';
+import ChatArea from './dashboard/ChatArea.tsx';
+
 //import UserProfile from 'D:/Nexus-2.0/src/components/dashboard/UserProfile.tsx';
 
 const Dashboard: React.FC = () => {
@@ -11,7 +12,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex h-screen bg-[#36393f]">
       <ServerSidebar />
-      <ChannelSidebar isDarkMode={false} onToggleDarkMode={() => {}} />
+     <ChannelSidebar isDarkMode={false} onToggleDarkMode={() => {}} />
       <ChatArea />
 
       {/* Add button to navigate to Mentorship Section */}
