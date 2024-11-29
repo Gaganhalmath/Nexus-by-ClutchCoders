@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Upload, Plus, Users, Code, PenTool, PieChart, Layers, Server, Globe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 interface ProfileData {
   avatar: string | null;
@@ -86,9 +87,14 @@ const ProfileCreation: React.FC = () => {
     setRemainingFields((fields) => fields - 1); // Decrease remainingFields when community is selected
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/HomePage');
+    try {
+      await axios.post('http://localhost:5000/profiles',profileData);
+      navigate('/HomePage');
+    } catch (error) {
+      console.error('Error saving profile',error);
+    }
   };
 
   return (
