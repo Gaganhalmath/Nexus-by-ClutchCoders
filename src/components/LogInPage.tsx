@@ -1,15 +1,70 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, Lock, Mail, MessageSquare } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const LoginPage: React.FC = () => {
+interface LoginPageProps {
+  onLoginSuccess: () => void; // Prop to notify the parent component of successful login
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleError = (message: string) => {
+    toast.error(message, {
+      position: 'top-right',
+      autoClose: 3000,
+    });
+  };
+
+  const handleSuccess = (message: string) => {
+    toast.success(message, {
+      position: 'top-right',
+      autoClose: 3000,
+    });
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/otp', { state: { email, password } });
+    if (!email || !password) {
+      return handleError('Email and password are required');
+    }
+    try {
+      const url = `http://localhost:5000/auth/login`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+      const { success, message, jwtToken, name, error } = result;
+
+      if (success) {
+        handleSuccess(message);
+        localStorage.setItem('token', jwtToken);
+        localStorage.setItem('loggedInUser', name);
+        
+        // Call onLoginSuccess to notify parent about successful login
+        onLoginSuccess();
+
+        setTimeout(() => {
+          navigate('/homepage');
+        }, 1000);
+      } else if (error) {
+        const details = error?.details[0]?.message || 'An error occurred';
+        handleError(details);
+      } else {
+        handleError(message);
+      }
+    } catch (err) {
+      handleError('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -20,8 +75,8 @@ const LoginPage: React.FC = () => {
           <h2 className="mt-6 text-3xl font-bold text-white">Welcome back!</h2>
           <p className="mt-2 text-gray-400">We're excited to see you again!</p>
         </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -41,7 +96,7 @@ const LoginPage: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
                 PASSWORD
@@ -60,16 +115,6 @@ const LoginPage: React.FC = () => {
                 />
               </div>
             </div>
-          </div>
-
-          <div>
-            <button
-              type="button"
-              onClick={() => navigate('/')}
-              className="text-sm text-[#5865f2] hover:underline"
-            >
-              Back
-            </button>
           </div>
 
           <button
@@ -91,6 +136,7 @@ const LoginPage: React.FC = () => {
             </button>
           </p>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

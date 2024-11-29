@@ -3,6 +3,11 @@ import { Upload, Plus, Users, Code, PenTool, PieChart, Layers, Server, Globe } f
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+interface ProfileCreationProps {
+  onComplete: () => void;
+  onSkip: () => void;
+}
+
 interface ProfileData {
   avatar: string | null;
   interests: string[];
@@ -29,7 +34,7 @@ const exampleCommunities = [
   'DevOps Experts',
 ];
 
-const ProfileCreation: React.FC = () => {
+const ProfileCreation: React.FC<ProfileCreationProps> = ({ onComplete, onSkip }) => {
   const navigate = useNavigate();
 
   const [profileData, setProfileData] = useState<ProfileData>({
@@ -41,16 +46,15 @@ const ProfileCreation: React.FC = () => {
   });
 
   const [newInterest, setNewInterest] = useState('');
-  const [remainingFields, setRemainingFields] = useState(5); // Starting with 5 remaining fields
+  const [remainingFields, setRemainingFields] = useState(5);
 
-  // Dummy logic: Decrease remainingFields when user uploads an avatar, adds an interest, or adds a skill
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileData((prevData) => ({ ...prevData, avatar: reader.result as string }));
-        setRemainingFields((fields) => fields - 1); // Decrease remainingFields
+        setRemainingFields((fields) => fields - 1);
       };
       reader.readAsDataURL(file);
     }
@@ -62,8 +66,8 @@ const ProfileCreation: React.FC = () => {
         ...prevData,
         interests: [...prevData.interests, newInterest],
       }));
-      setNewInterest(''); // Clear the input field after adding interest
-      setRemainingFields((fields) => fields - 1); // Decrease remainingFields
+      setNewInterest('');
+      setRemainingFields((fields) => fields - 1);
     }
   };
 
@@ -74,7 +78,7 @@ const ProfileCreation: React.FC = () => {
         ? prevData.skills.filter((s) => s !== skill)
         : [...prevData.skills, skill],
     }));
-    setRemainingFields((fields) => fields - 1); // Decrease remainingFields when skill is selected
+    setRemainingFields((fields) => fields - 1);
   };
 
   const toggleCommunitySelection = (community: string) => {
@@ -84,22 +88,22 @@ const ProfileCreation: React.FC = () => {
         ? prevData.communities.filter((c) => c !== community)
         : [...prevData.communities, community],
     }));
-    setRemainingFields((fields) => fields - 1); // Decrease remainingFields when community is selected
+    setRemainingFields((fields) => fields - 1);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/profiles',profileData);
+      await axios.post('http://localhost:5000/profiles', profileData);
+      onComplete(); // Call the onComplete callback
       navigate('/HomePage');
     } catch (error) {
-      console.error('Error saving profile',error);
+      console.error('Error saving profile', error);
     }
   };
 
   return (
     <div className="flex min-h-screen bg-[#36393f] text-white">
-      {/* Left Section: Profile Preview */}
       <div className="w-1/3 bg-[#2f3136] p-6 sticky top-0 h-screen overflow-y-auto">
         <h2 className="text-2xl font-bold mb-4">Profile Preview</h2>
         <div className="flex flex-col items-center space-y-4">
@@ -144,11 +148,9 @@ const ProfileCreation: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Section: Profile Form */}
       <div className="w-2/3 p-6 overflow-y-auto">
         <h2 className="text-3xl font-bold mb-6">Complete Your Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Avatar Upload */}
           <div className="flex items-center space-x-4">
             <div className="relative w-24 h-24">
               <div
@@ -172,7 +174,6 @@ const ProfileCreation: React.FC = () => {
             <p className="text-sm text-gray-400">Upload a profile picture to personalize your profile.</p>
           </div>
 
-          {/* Interests */}
           <div>
             <label className="block text-lg font-medium mb-2">Add Your Interests</label>
             <div className="flex gap-2 mb-4">
@@ -193,7 +194,6 @@ const ProfileCreation: React.FC = () => {
             </div>
           </div>
 
-          {/* Skills */}
           <div>
             <label className="block text-lg font-medium mb-2">Select Your Skills</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -215,7 +215,6 @@ const ProfileCreation: React.FC = () => {
             </div>
           </div>
 
-          {/* Communities */}
           <div>
             <label className="block text-lg font-medium mb-2">Join Communities</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -237,7 +236,6 @@ const ProfileCreation: React.FC = () => {
             </div>
           </div>
 
-          {/* Experience */}
           <div>
             <label className="block text-lg font-medium mb-2">Share Your Experience</label>
             <textarea
@@ -245,16 +243,19 @@ const ProfileCreation: React.FC = () => {
               onChange={(e) =>
                 setProfileData((prevData) => ({ ...prevData, experience: e.target.value }))
               }
-              className="w-full bg-[#202225] rounded px-4 py-2 h-32 text-white"
-              placeholder="Tell us about your work experience..."
+              className="w-full bg-[#202225] text-white rounded px-4 py-2"
+              rows={4}
+              placeholder="Describe your professional experience"
             />
           </div>
 
-          {/* Submit */}
           <div className="flex justify-between items-center">
             <button
               type="button"
-              onClick={() => navigate('/HomePage')}
+              onClick={() => {
+                onSkip();
+                navigate('/HomePage');
+              }}
               className="text-gray-400 hover:text-white"
             >
               Skip for now

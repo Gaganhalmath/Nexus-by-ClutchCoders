@@ -2,8 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const AuthRouter = require('./routes/AuthRouter');
+const ProductRouter = require('./routes/ProductRouter');
 
 const app = express();
+require('dotenv').config();
+require('./models/db');
+
+app.use(bodyParser.json());
+app.use(cors());
+app.use('/auth', AuthRouter);
+app.use('/products', ProductRouter);
 
 // Increase payload size limit
 app.use(bodyParser.json({ limit: '10mb' })); // You can increase the limit as needed
