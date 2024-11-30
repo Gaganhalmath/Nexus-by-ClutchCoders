@@ -28,7 +28,7 @@
 ---
 
 ### 1. **Login Page**
-![Login Page](images nexus/WhatsApp Image 2024-11-30 at 8.15.18 PM.jpg)
+![Login Page](https://github.com/Gaganhalmath/Nexus-by-ClutchCoders/blob/main/images%20nexus/about.png)
 
 
 Got it! Here’s the user-friendly description to add to the **README** file for the **Login Page**:
