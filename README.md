@@ -25,12 +25,6 @@
 - **Styling**: TailwindCSS
 - **Package Manager**: Yarn
 
----
-
-
-
-
-Got it! Here’s the user-friendly description to add to the **README** file for the **Login Page**:
 
 ---
 
