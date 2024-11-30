@@ -235,7 +235,7 @@ Notifications are designed to keep you connected and up to date, ensuring that y
 ---
 
 ### **About Us**  
-![About Us](images nexus/about.png)  
+![About Us](Nexus-by-ClutchCoders/images nexus/about.png)  
 
 **Nexus: Empowering Freelancers, Building Connections**  
 
