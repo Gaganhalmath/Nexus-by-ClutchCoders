@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Nexus-backend",
+			"path": "../Nexus-backend"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "backend hackathon"
+	}
+}
