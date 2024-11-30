@@ -27,9 +27,6 @@
 
 ---
 
-### 1. **Login Page**
-![Login Page]('https://github.com/Gaganhalmath/Nexus-by-ClutchCoders/blob/main/images%20nexus/chatbot2.png')
-![Image](https://github.com/Gaganhalmath/Nexus-by-ClutchCoders/images nexus/chatbot2.png)
 
 
 
@@ -37,7 +34,7 @@ Got it! Here’s the user-friendly description to add to the **README** file for
 
 ---
 
-### **Login Page**
+###1. **Login Page**
 
 The **Login Page** offers a simple and secure way for users to access their Nexus accounts. We’ve integrated **Google Login** for an easy and seamless sign-in experience. Here's why this method is the best for you:
 
@@ -217,8 +214,7 @@ The **Discussion Forum** fosters an inclusive and collaborative environment, emp
 ### 7. **Notifications**
 ![Notifications](./path-to-images/notifications.jpg)
 
-**Description**:  
-### **Notifications Page**  
+
 
 **Stay Updated with Real-Time Alerts**  
 
@@ -270,11 +266,32 @@ Be a part of the Nexus community – where freelancers thrive, collaborate, and 
 
 ---
 
-### 9. **any other add now Page**
-![Registration Page](./path-to-images/registration-page.jpg)
 
-**Description**:  
-New users can sign up on the registration page. It includes fields for entering user details, uploading a profile picture, and setting a password.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
