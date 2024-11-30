@@ -36,7 +36,7 @@ const RegisterPage: React.FC = () => {
 
       if (success) {
         toast.success(message);
-        setTimeout(() => navigate('/login'), 1000);
+        setTimeout(() => navigate('/profile-creation'), 1000);
       } else if (error) {
         const details = error?.details?.[0]?.message || 'An error occurred';
         toast.error(details);
