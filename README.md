@@ -29,6 +29,8 @@
 
 ### 1. **Login Page**
 ![Login Page]('https://github.com/Gaganhalmath/Nexus-by-ClutchCoders/blob/main/images%20nexus/chatbot2.png')
+![Image](https://github.com/Gaganhalmath/Nexus-by-ClutchCoders/blob/main/images nexus/about.jpg)
+
 
 
 Got it! Here’s the user-friendly description to add to the **README** file for the **Login Page**:
