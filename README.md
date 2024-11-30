@@ -267,40 +267,6 @@ Be a part of the Nexus community – where freelancers thrive, collaborate, and 
 ---
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-
-
-
 ## **Dependencies**
 
 #### **Frontend**
