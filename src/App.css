@@ -5,7 +5,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: 'Arial', sans-serif; /* Or your preferred font */
+  font-family: 'Space Grotesk', sans-serif; /* Or your preferred font */
 }
 
 /* Optional: additional global styles */
@@ -55,3 +55,6 @@ html, body {
     transform: rotate(360deg);
   }
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');

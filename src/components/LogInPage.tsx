@@ -1,22 +1,40 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, Lock, Mail, MessageSquare } from 'lucide-react';
+import axios from 'axios';  // Make sure axios is installed
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/otp', { state: { email, password } });
+
+    try {
+      // Send request to backend login API
+      const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
+
+      if (response.data.success) {
+        // Store JWT token in localStorage (or in state, depending on your needs)
+        localStorage.setItem('jwtToken', response.data.jwtToken);
+        
+        // Navigate to the OTP page (or whatever you want to navigate to)
+        navigate('/otp', { state: { email, password } });
+      } else {
+        setError(response.data.message);
+      }
+    } catch (err) {
+      setError('Login failed, please try again.');
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#36393f]">
       <div className="w-full max-w-md space-y-8 bg-[#2f3136] p-8 rounded-lg shadow-2xl">
         <div className="text-center">
-          <MessageSquare className="mx-auto h-12 w-12 text-[#5865f2]" />
+          <MessageSquare className="mx-auto h-12 w-12 text-[#805ad5]" />
           <h2 className="mt-6 text-3xl font-bold text-white">Welcome back!</h2>
           <p className="mt-2 text-gray-400">We're excited to see you again!</p>
         </div>
@@ -62,11 +80,15 @@ const LoginPage: React.FC = () => {
             </div>
           </div>
 
+          {error && (
+            <div className="text-red-500 text-sm text-center">{error}</div>
+          )}
+
           <div>
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="text-sm text-[#5865f2] hover:underline"
+              className="text-sm text-[#805ad5] hover:underline"
             >
               Back
             </button>
@@ -85,7 +107,7 @@ const LoginPage: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/register')}
-              className="text-[#5865f2] hover:underline"
+              className="text-[#805ad5] hover:underline"
             >
               Register
             </button>

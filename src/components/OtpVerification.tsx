@@ -34,7 +34,7 @@ const OtpVerification: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="text-sm text-[#5865f2] hover:underline"
+              className="text-sm text-[#805ad5] hover:underline"
             >
               Back
             </button>

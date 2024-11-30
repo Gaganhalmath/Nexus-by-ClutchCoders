@@ -8,6 +8,7 @@ interface ProfileData {
   skills: string[];
   experience: string;
   communities: string[];
+  isMentor: boolean; // New field for mentor status
 }
 
 const predefinedSkills = [
@@ -37,6 +38,7 @@ const ProfileCreation: React.FC = () => {
     skills: [],
     experience: '',
     communities: [],
+    isMentor: false, // Default value for isMentor is false
   });
 
   const [newInterest, setNewInterest] = useState('');
@@ -112,7 +114,7 @@ const ProfileCreation: React.FC = () => {
               {profileData.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="bg-[#5865f2] text-white px-3 py-1 rounded-full text-sm"
+                  className="bg-[#805ad5] text-white px-3 py-1 rounded-full text-sm"
                 >
                   {skill}
                 </span>
@@ -125,7 +127,7 @@ const ProfileCreation: React.FC = () => {
               {profileData.interests.map((interest) => (
                 <span
                   key={interest}
-                  className="bg-[#5865f2] text-white px-3 py-1 rounded-full text-sm"
+                  className="bg-[#805ad5] text-white px-3 py-1 rounded-full text-sm"
                 >
                   {interest}
                 </span>
@@ -146,9 +148,7 @@ const ProfileCreation: React.FC = () => {
           <div className="flex items-center space-x-4">
             <div className="relative w-24 h-24">
               <div
-                className={`w-full h-full rounded-full flex items-center justify-center ${
-                  profileData.avatar ? 'bg-transparent' : 'bg-[#202225]'
-                }`}
+                className={`w-full h-full rounded-full flex items-center justify-center ${profileData.avatar ? 'bg-transparent' : 'bg-[#202225]'}`}
               >
                 {profileData.avatar ? (
                   <img src={profileData.avatar} alt="Profile" className="rounded-full object-cover" />
@@ -180,7 +180,7 @@ const ProfileCreation: React.FC = () => {
               <button
                 type="button"
                 onClick={addInterest}
-                className="px-4 py-2 bg-[#5865f2] text-white rounded hover:bg-[#4752c4]"
+                className="px-4 py-2 bg-[#805ad5] text-white rounded hover:bg-[#4752c4]"
               >
                 <Plus className="h-5 w-5" />
               </button>
@@ -196,11 +196,7 @@ const ProfileCreation: React.FC = () => {
                   type="button"
                   key={name}
                   onClick={() => toggleSkillSelection(name)}
-                  className={`p-3 rounded flex items-center space-x-2 ${
-                    profileData.skills.includes(name)
-                      ? 'bg-[#5865f2] text-white'
-                      : 'bg-[#202225] text-gray-400'
-                  }`}
+                  className={`p-3 rounded flex items-center space-x-2 ${profileData.skills.includes(name) ? 'bg-[#805ad5] text-white' : 'bg-[#202225] text-gray-400'}`}
                 >
                   <Icon className="w-5 h-5" />
                   <span>{name}</span>
@@ -218,11 +214,7 @@ const ProfileCreation: React.FC = () => {
                   type="button"
                   key={community}
                   onClick={() => toggleCommunitySelection(community)}
-                  className={`p-3 rounded flex items-center space-x-2 ${
-                    profileData.communities.includes(community)
-                      ? 'bg-[#5865f2] text-white'
-                      : 'bg-[#202225] text-gray-400'
-                  }`}
+                  className={`p-3 rounded flex items-center space-x-2 ${profileData.communities.includes(community) ? 'bg-[#5865f2] text-white' : 'bg-[#202225] text-gray-400'}`}
                 >
                   <Users className="w-5 h-5" />
                   <span>{community}</span>
@@ -236,12 +228,24 @@ const ProfileCreation: React.FC = () => {
             <label className="block text-lg font-medium mb-2">Share Your Experience</label>
             <textarea
               value={profileData.experience}
-              onChange={(e) =>
-                setProfileData((prevData) => ({ ...prevData, experience: e.target.value }))
-              }
+              onChange={(e) => setProfileData((prevData) => ({ ...prevData, experience: e.target.value }))}
               className="w-full bg-[#202225] rounded px-4 py-2 h-32 text-white"
               placeholder="Tell us about your work experience..."
             />
+          </div>
+
+          {/* Mentor Checkbox */}
+          <div className="flex items-center space-x-4">
+            <input
+              type="checkbox"
+              checked={profileData.isMentor}
+              onChange={() => setProfileData((prevData) => ({ ...prevData, isMentor: !prevData.isMentor }))}
+              id="mentor-checkbox"
+              className="text-[#805ad5] rounded"
+            />
+            <label htmlFor="mentor-checkbox" className="text-lg text-white">
+              I am a mentor
+            </label>
           </div>
 
           {/* Submit */}
@@ -255,7 +259,7 @@ const ProfileCreation: React.FC = () => {
             </button>
             <button
               type="submit"
-              className="bg-[#5865f2] text-white px-6 py-2 rounded hover:bg-[#4752c4]"
+              className="bg-[#805ad5] text-white px-6 py-2 rounded hover:bg-[#805ad5]"
             >
               Complete Profile
             </button>

@@ -4,6 +4,7 @@ import AchievementSection from './sections/AchievementSection';
 import CoinsSection from './sections/CoinsSection';
 import MentorshipSection from './sections/MentorshipSection';
 import RedeemSection from './sections/RedeemSection';
+import { FiShield } from 'react-icons/fi'; // Import the "M" badge icon
 
 interface ProfileModalProps {
   onClose: () => void;
@@ -15,12 +16,13 @@ interface ProfileModalProps {
     achievements: string[];
     coins: number;
   };
+  isMentor: boolean; // Add isMentor prop
 }
 
-const ProfileModal: React.FC<ProfileModalProps> = ({ onClose, profileData }) => {
+const ProfileModal: React.FC<ProfileModalProps> = ({ onClose, profileData, isMentor }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-      <div className="bg-[#36393f] w-full max-w-6xl rounded-lg shadow-xl">
+      <div className="bg-[#36393f] w-full max-w-[90vw] sm:max-w-4xl md:max-w-3xl lg:max-w-2xl xl:max-w-[50vw] h-auto rounded-lg shadow-xl overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-[#202225]">
           <h2 className="text-xl font-bold text-white">User Profile</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-white">
@@ -43,7 +45,16 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ onClose, profileData }) => 
 
             {/* Username and Tag */}
             <div className="text-center">
-              <div className="text-xl font-semibold text-white">{profileData.username}</div>
+              <div className="text-xl font-semibold text-white flex items-center justify-center">
+                {profileData.username}
+                {/* Conditionally render the Mentor Badge */}
+                {isMentor && (
+                  <div className="flex items-center ml-2">
+                    <FiShield className="text-yellow-500" size={20} />
+                    <span className="text-white ml-1">M</span> {/* "M" badge */}
+                  </div>
+                )}
+              </div>
               <div className="text-gray-400 text-sm">{profileData.tag}</div>
             </div>
 
@@ -54,7 +65,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ onClose, profileData }) => 
                 {profileData.skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-[#5865f2] text-white px-3 py-1 rounded-full text-sm"
+                    className="bg-[#805ad5] text-white px-3 py-1 rounded-full text-sm"
                   >
                     {skill}
                   </span>

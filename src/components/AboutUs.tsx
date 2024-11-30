@@ -4,7 +4,7 @@ const AboutUs: React.FC = () => {
   return (
     <div className="bg-[#36393f] text-gray-200 font-roboto">
       {/* Header */}
-      <div className="header bg-black text-white p-4 flex justify-between items-center">
+      <div className="header #36393f text-white p-4 flex justify-between items-center">
         <img src="/Nexus-logo.jpg" alt="Logo" className="h-10" />
         <div className="menu flex gap-4">
           <a href="/HomePage" className="font-medium">Home</a>

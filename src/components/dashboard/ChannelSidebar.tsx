@@ -14,12 +14,12 @@ const CommunityItem: React.FC<{ name: string }> = ({ name }) => (
   </div>
 );
 
-const ChannelSidebar: React.FC<ChannelSidebarProps> = ({ isDarkMode, onToggleDarkMode }) => {
+const ChannelSidebar: React.FC<ChannelSidebarProps> = ({  }) => {
   return (
     <div className="w-60 bg-[#2f3136] flex flex-col">
       <div className="p-4 shadow-md flex items-center justify-between">
         <h2 className="text-white font-bold">Nexus</h2>
-        <button
+        {/*<button
           onClick={onToggleDarkMode}
           className="text-gray-400 hover:text-white"
         >
@@ -28,7 +28,7 @@ const ChannelSidebar: React.FC<ChannelSidebarProps> = ({ isDarkMode, onToggleDar
           ) : (
             <Moon className="h-5 w-5" />
           )}
-        </button>
+        </button>*/}
       </div>
       <div className="flex-1 overflow-y-auto">
         <div className="px-2 py-3">
@@ -38,7 +38,7 @@ const ChannelSidebar: React.FC<ChannelSidebarProps> = ({ isDarkMode, onToggleDar
           <CommunityItem name="Data Science" />
         </div>
       </div>
-      <UserProfile />
+      <UserProfile isMentor={true} /> {/*make true to add badge*/}
     </div>
   );
 };

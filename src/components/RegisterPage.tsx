@@ -64,7 +64,7 @@ const RegisterPage: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="text-sm text-[#5865f2] hover:underline"
+              className="text-sm text-[#805ad5] hover:underline"
             >
               Back
             </button>

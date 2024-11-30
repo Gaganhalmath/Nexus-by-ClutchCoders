@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { User, Settings } from 'lucide-react';
 import ProfileModal from '../profile/ProfileModal';
+import { FiShield } from 'react-icons/fi'; 
 
-const UserProfile: React.FC = () => {
+const UserProfile: React.FC<{ isMentor: boolean }> = ({ isMentor }) => { 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   // Dummy data for profile (replace with actual profile data)
   const profileData = {
-    avatar: '/Gagan.jpeg',
-    username: 'Gagan',
+    avatar: '/blank-profile-icon.jpg',
+    username: 'Test-User',
     tag: '#0001',
     skills: ['Web Development', 'UI/UX Design', 'SEO'],
     achievements: ['Completed 50 projects', '100+ clients', 'Top 10% freelancer'],
@@ -22,7 +23,7 @@ const UserProfile: React.FC = () => {
         onClick={() => setIsProfileOpen(true)}
       >
         <div className="flex items-center">
-          <div className="w-16 h-16 rounded-full bg-[#5865f2] flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-[#805ad5] flex items-center justify-center">
             <img
               src={profileData.avatar}
               alt="Profile"
@@ -30,7 +31,16 @@ const UserProfile: React.FC = () => {
             />
           </div>
           <div className="ml-4">
-            <div className="text-white text-xl font-medium">{profileData.username}</div>
+            <div className="text-white text-xl font-medium flex items-center">
+              {profileData.username}
+              {/* Conditionally render the Mentor Badge */}
+              {isMentor && (
+                <div className="flex items-center ml-2">
+                  <FiShield className="text-yellow-500" size={20} />
+                  <span className="text-white ml-1">M</span> {/* Render the "M" badge */}
+                </div>
+              )}
+            </div>
             <div className="text-gray-400 text-sm">{profileData.tag}</div>
           </div>
         </div>
@@ -39,7 +49,8 @@ const UserProfile: React.FC = () => {
 
       {/* Profile Modal */}
       {isProfileOpen && (
-        <ProfileModal onClose={() => setIsProfileOpen(false)} profileData={profileData} />
+        <ProfileModal onClose={() => setIsProfileOpen(false)} profileData={profileData} isMentor={isMentor} />
+
       )}
     </>
   );

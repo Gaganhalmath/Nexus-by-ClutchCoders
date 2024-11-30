@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Chatbot from './Chatbot';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ const HomePage: React.FC = () => {
     <div>
       <style>{`
         body {
-          font-family: 'Roboto', sans-serif;
+          font-family: 'Space Grotesk', sans-serif;
           margin: 0;
           padding: 0;
           background-color: #36393f;
@@ -21,6 +22,7 @@ const HomePage: React.FC = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          font-family: 'Space Grotesk',sans-serif;
         }
         .header img {
           height: 65px;
@@ -33,6 +35,33 @@ const HomePage: React.FC = () => {
         .header .menu a {
           color: #fff;
           text-decoration: none;
+          font-size: 1em;
+          font-weight: bold;
+          padding: 10px 12px;
+          background: linear-gradient(45deg, #36393f,#36393f);
+          border-radius: 5px;
+          transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+          position: relative;
+          overflow:hidden;
+        }
+          .header .menu a:hover {
+          transform: scale(1.1) rotate(-2deg); /* Scale up and rotate slightly */
+          background: linear-gradient(45deg, #36393f, #36393f); /* Reverse gradient */
+          box-shadow: 0 6px 15px #805ad5; /* Glowing shadow ---also can try this rgba(255, 105, 180, 0.5)*/
+        }
+        .header .menu a:active {
+          animation: bounce 0.3s ease;
+        }
+        @keyframes bounce {
+          0% {
+            transform: scale(1.1) rotate(-2deg);
+          }
+          50% {
+            transform: scale(0.9) rotate(2deg);
+          }
+          100% {
+            transform: scale(1) rotate(0deg);
+          }
         }
         
         .main-banner {
@@ -49,7 +78,7 @@ const HomePage: React.FC = () => {
           font-size: 1.2em;
         }
       .main-banner .cta-button {
-    background: linear-gradient(45deg, #5865f2, #feb47b); /* Gradient background */
+    background: linear-gradient(45deg, #6340b3, #000); /* Gradient background */
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
@@ -134,15 +163,28 @@ const HomePage: React.FC = () => {
     width: 100%;
     height: 3px;
     background-color: #fff; /* White underline */
-    transform: translateX(-50%) scaleX(0); /* Initially hidden */
+    transform: translateX(-50%) scaleX(1); /* Initially hidden */
     transform-origin: center;
-    transition: transform 0.3s ease; /* Animated underline */
+    transition: transform 0.9s ease; /* Animated underline */
 }
 
 .content .section .cta-button:hover {
-    transform: scale(1.05); /* Enlarges button on hover */
+    transform: scale(1.05) rotate(3deg); /* Enlarges and slightly rotates the button */
     background: linear-gradient(45deg, #8e44ad, #9b59b6); /* Slight color change on hover */
+    animation: pulse 0.6s infinite; /* Adds a pulsing effect */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3); /* Enhances shadow for a glowing effect */
 }
+
+/* Define the pulse animation */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Original shadow */
+    }
+    50% {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow at pulse peak */
+    }
+}
+
 
 .content .section .cta-button:hover::after {
     transform: translateX(-50%) scaleX(1); /* Expands underline on hover */
@@ -220,6 +262,7 @@ const HomePage: React.FC = () => {
               </div>
               <button
   type="button"
+  onClick={() => navigate('/find-friends')}
   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-md transition transform duration-300 ease-in-out hover:scale-105 hover:from-purple-800 hover:to-purple-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
 >
   
@@ -281,6 +324,13 @@ const HomePage: React.FC = () => {
   </div>
 </div>
 </div>
+<div className="relative">
+      <h1>Welcome to the HomePage</h1>
+      {/* Other components/content */}
+      
+      {/* Include Chatbot */}
+      <Chatbot />
+    </div>
 {/* Footer */}
 <div className="footer">
   <p>© 2024 The Nexus Community for Freelancers. All rights reserved.</p>
