@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage: React.FC = () => {
   const [name, setName] = useState('');
@@ -8,10 +10,43 @@ const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to the Profile Creation page with necessary state
-    navigate('/profile-creation', { state: { name, email, password } });
+
+    // Validate inputs
+    if (!name || !email || !password) {
+      toast.error('Name, email, and password are required');
+      return;
+    }
+
+    try {
+      // Replace with your backend signup API URL
+      const url = `http://localhost:5000/auth/signup`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const result = await response.json();
+
+      const { success, message, error } = result;
+
+      if (success) {
+        toast.success(message);
+        setTimeout(() => navigate('/profile-creation'), 1000);
+      } else if (error) {
+        const details = error?.details?.[0]?.message || 'An error occurred';
+        toast.error(details);
+      } else {
+        toast.error(message || 'Signup failed');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -77,6 +112,7 @@ const RegisterPage: React.FC = () => {
             Register
           </button>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

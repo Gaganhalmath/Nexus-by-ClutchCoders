@@ -1,34 +1,21 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, Lock, Mail, MessageSquare } from 'lucide-react';
-import axios from 'axios';  // Make sure axios is installed
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    try {
-      // Send request to backend login API
-      const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
-
-      if (response.data.success) {
-        // Store JWT token in localStorage (or in state, depending on your needs)
-        localStorage.setItem('jwtToken', response.data.jwtToken);
-        
-        // Navigate to the OTP page (or whatever you want to navigate to)
-        navigate('/otp', { state: { email, password } });
-      } else {
-        setError(response.data.message);
-      }
-    } catch (err) {
-      setError('Login failed, please try again.');
-    }
+    navigate('/otp', { state: { email, password } });
   };
+
+  function handleLogin(event: FormEvent<HTMLFormElement>): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#36393f]">
@@ -38,8 +25,8 @@ const LoginPage: React.FC = () => {
           <h2 className="mt-6 text-3xl font-bold text-white">Welcome back!</h2>
           <p className="mt-2 text-gray-400">We're excited to see you again!</p>
         </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -59,7 +46,7 @@ const LoginPage: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
                 PASSWORD
@@ -80,15 +67,11 @@ const LoginPage: React.FC = () => {
             </div>
           </div>
 
-          {error && (
-            <div className="text-red-500 text-sm text-center">{error}</div>
-          )}
-
           <div>
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="text-sm text-[#805ad5] hover:underline"
+              className="text-sm text-[#5865f2] hover:underline"
             >
               Back
             </button>
@@ -113,6 +96,7 @@ const LoginPage: React.FC = () => {
             </button>
           </p>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );
