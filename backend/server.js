@@ -21,8 +21,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 // Middleware
 app.use(cors());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/nexus2');
+
 
 // Routes
 const profilesRouter = require('./routes/profiles');
