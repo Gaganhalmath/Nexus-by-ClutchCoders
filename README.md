@@ -18,7 +18,7 @@
 ---
 
 ## **Tech Stack**
-- **Frontend**: React, TypeScript, Vite, yarn
+- **Frontend**: React, TypeScript, Vite
 - **Backend**: Node.js, Express, Socket.IO
 - **Database**: MongoDB (Cloud-based via Atlas)
 - **State Management**: Context API or Redux (as needed)
