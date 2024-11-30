@@ -29,7 +29,7 @@
 
 ### 1. **Login Page**
 ![Login Page]('https://github.com/Gaganhalmath/Nexus-by-ClutchCoders/blob/main/images%20nexus/chatbot2.png')
-![Image](.images nexus/chatbot2.png)
+![Image](./images nexus/chatbot2.png)
 
 
 
