@@ -28,7 +28,7 @@
 ---
 
 ### 1. **Login Page**
-![Login Page](./path-to-images/login-page.jpg)
+![Login Page](WhatsApp Image 2024-11-30 at 7.56.57 PM.jpeg)
 
 Got it! Here’s the user-friendly description to add to the **README** file for the **Login Page**:
 
